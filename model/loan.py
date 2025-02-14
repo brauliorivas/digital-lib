@@ -26,10 +26,10 @@ class Loan:
         for loan in loans:
             same_user = loan.username == username
             same_book = loan.code == code
-            valid_loan = loan.due_date > today
-            can_loan = same_user and same_book and valid_loan
+            in_range = loan.due_date > today
+            valid_loan = same_user and same_book and in_range
 
-            if can_loan:
+            if valid_loan:
                 raise Exception("Can't loan this book")
 
         due_date = today + timedelta(days=30)
